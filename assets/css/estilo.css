@@ -1,0 +1,31 @@
+            html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            background-color: #f8f9fa;
+        }
+
+        main {
+            flex: 1;
+        }
+
+        header {
+            background: #343a40;
+            color: white;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        footer {
+            background: #212529;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .table-container {
+            overflow-x: auto;
+        }

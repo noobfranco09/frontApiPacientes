@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>theLastday - Gestión de Pacientes</title>
+    <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="./assets/css/estilo.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="container">
+        <h1>Gestión de Pacientes</h1>
+        <p class="lead">
+          Bienvenido al sistema de administración clínica de theLastday
+        </p>
+      </div>
+    </header>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">The Last Day</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse justify-content-end"
+          id="navbarNav"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="#">Inicio</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Pacientes</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Citas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- MAIN -->
+    <main class="container my-5">
+      <div class="row d-flex justify-content-start mb-1 ">
+        <div class="col-12 d-flex justify-content-start aling-items-center">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#pacienteModal"
+          >
+            Agregar Paciente
+          </button>
+        </div>
+      </div>
+
+      <div class="table-container ">
+        <table
+          id="tablaPacientes"
+          class="table table-hover table-bordered align-middle"
+        >
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Edad</th>
+              <th scope="col">Género</th>
+              <th scope="col">Diagnóstico</th>
+              <th scope="col">Fecha de Ingreso</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="cuerpoTablaPacientes">
+            <!-- Más filas si es necesario -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+    <!--*******************************************************************************************Inicio Modal Agregar*******************************************************************-->
+    <!-- Botón para abrir el modal (puedes ponerlo donde quieras) -->
+
+    <div
+      class="modal fade"
+      id="pacienteModal"
+      tabindex="-1"
+      aria-labelledby="pacienteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="pacienteModalLabel">
+              Formulario de Paciente
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <form id="formPaciente">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="nombrePaciente" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nombrePaciente"
+                  name="nombre"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="edadPaciente" class="form-label">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="edadPaciente"
+                  name="edad"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="generoPaciente" class="form-label">Género</label>
+                <select
+                  class="form-select"
+                  id="generoPaciente"
+                  name="genero"
+                  required
+                >
+                  <option value="" disabled selected>Selecciona género</option>
+                  <option value="F">Femenino</option>
+                  <option value="M">Masculino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="diagnosticoPaciente" class="form-label"
+                  >Diagnóstico</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="diagnosticoPaciente"
+                  name="diagnostico"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="fechaIngresoPaciente" class="form-label"
+                  >Fecha de Ingreso</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="fechaIngresoPaciente"
+                  name="fechaIngreso"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary" id="btnCrearPaciente">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--*******************************************************************************************Fin Modal Agregar*******************************************************************-->
+
+        <!--*******************************************************************************************Inicio Modal editar*******************************************************************-->
+    <!-- Botón para abrir el modal (puedes ponerlo donde quieras) -->
+
+    <div
+      class="modal fade"
+      id="editarPaciente"
+      tabindex="-1"
+      aria-labelledby="pacienteModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header bg-dark text-white">
+            <h5 class="modal-title" id="pacienteModalLabel">
+              Editar Paciente
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Cerrar"
+            ></button>
+          </div>
+          <form id="formPaciente">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="editarNombrePaciente" class="form-label">Nombre</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editarNombrePaciente"
+                  name="nombre"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editarEdadPaciente" class="form-label">Edad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="editarEdadPaciente"
+                  name="edad"
+                  min="0"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editarGeneroPaciente" class="form-label">Género</label>
+                <select
+                  class="form-select"
+                  id="editarGeneroPaciente"
+                  name="genero"
+                  required
+                >
+                  <option value="" disabled selected>Selecciona género</option>
+                  <option value="Femenino">Femenino</option>
+                  <option value="Masculino">Masculino</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label for="diagnosticoPaciente" class="form-label"
+                  >Diagnóstico</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  id="editarDiagnosticoPaciente"
+                  name="diagnostico"
+                  required
+                />
+              </div>
+              <div class="mb-3">
+                <label for="editarFechaIngresoPaciente" class="form-label"
+                  >Fecha de Ingreso</label
+                >
+                <input
+                  type="date"
+                  class="form-control"
+                  id="editarFechaIngresoPaciente"
+                  name="fechaIngreso"
+                  required
+                />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Cancelar
+              </button>
+              <button type="submit" class="btn btn-primary" id="btnEditarPaciente">Guardar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!--*******************************************************************************************Fin Modal editar*******************************************************************-->
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 theLastday Clínica. Todos los derechos reservados.</p>
+      </div>
+    </footer>
+
+    <script src="./assets/js/bootstrap.bundle.js"></script>
+    <script src="./assets/js/getAllPacientes.js"></script>
+  </body>
+</html>
