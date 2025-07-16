@@ -48,20 +48,42 @@
 
     <!-- MAIN -->
     <main class="container my-5">
-      <div class="row d-flex justify-content-start mb-1 ">
-        <div class="col-12 d-flex justify-content-start aling-items-center">
+      <div class="row d-flex justify-content-start mb-1">
+        <div class="col-6 d-flex align-items-between">
           <button
             type="button"
-            class="btn btn-primary"
+            class="btn btn-primary m-1 "
             data-bs-toggle="modal"
             data-bs-target="#pacienteModal"
           >
             Agregar Paciente
           </button>
+
+          <button type="button" class="btn btn-success m-1" id="verPacientes">
+            Ver pacientes
+          </button>
+        </div>
+        <div class="col-6">
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+              id="buscar"
+            />
+            <button
+              class="btn btn-outline-success"
+              type="submit"
+              id="btnBuscar"
+            >
+              Search
+            </button>
+          </form>
         </div>
       </div>
 
-      <div class="table-container ">
+      <div class="table-container">
         <table
           id="tablaPacientes"
           class="table table-hover table-bordered align-middle"
@@ -176,7 +198,13 @@
               >
                 Cancelar
               </button>
-              <button type="submit" class="btn btn-primary" id="btnCrearPaciente">Guardar</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="btnCrearPaciente"
+              >
+                Guardar
+              </button>
             </div>
           </form>
         </div>
@@ -184,7 +212,7 @@
     </div>
     <!--*******************************************************************************************Fin Modal Agregar*******************************************************************-->
 
-        <!--*******************************************************************************************Inicio Modal editar*******************************************************************-->
+    <!--*******************************************************************************************Inicio Modal editar*******************************************************************-->
     <!-- Botón para abrir el modal (puedes ponerlo donde quieras) -->
 
     <div
@@ -197,9 +225,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header bg-dark text-white">
-            <h5 class="modal-title" id="pacienteModalLabel">
-              Editar Paciente
-            </h5>
+            <h5 class="modal-title" id="pacienteModalLabel">Editar Paciente</h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -208,9 +234,12 @@
             ></button>
           </div>
           <form id="formPaciente">
+            <input type="number" id="idModalEditarPaciente" hidden />
             <div class="modal-body">
               <div class="mb-3">
-                <label for="editarNombrePaciente" class="form-label">Nombre</label>
+                <label for="editarNombrePaciente" class="form-label"
+                  >Nombre</label
+                >
                 <input
                   type="text"
                   class="form-control"
@@ -231,7 +260,9 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="editarGeneroPaciente" class="form-label">Género</label>
+                <label for="editarGeneroPaciente" class="form-label"
+                  >Género</label
+                >
                 <select
                   class="form-select"
                   id="editarGeneroPaciente"
@@ -277,7 +308,13 @@
               >
                 Cancelar
               </button>
-              <button type="submit" class="btn btn-primary" id="btnEditarPaciente">Guardar</button>
+              <button
+                type="submit"
+                class="btn btn-primary"
+                id="btnModalEditarPaciente"
+              >
+                Guardar
+              </button>
             </div>
           </form>
         </div>
